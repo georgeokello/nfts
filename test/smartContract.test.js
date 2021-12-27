@@ -1,3 +1,5 @@
+const { assert } = require("chai");
+
 const SmartContract = artifacts.require("./SmartContract.sol");
 
 require("chai").use(require("chai-as-promised")).should();
@@ -21,4 +23,16 @@ contract("SmartContract", (accounts) => {
       assert.equal(name, "Smart Contract");
     });
   });
+
+  describe("minting", async () => {
+    it("minted successfully", async () => {
+      const uri = "https://exampl.com";
+      await smartContract.mint(accounts[0], uri);
+      const tokenUri = await smartContract.tokenURI(0);
+      const balanceofOwner = await smartContract.balanceOf(accounts[0]);
+      assert.equal(tokenUri, uri);
+      assert.equal(balanceofOwner,1);
+    });
+  });
+
 });

@@ -18,11 +18,25 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const infuraKey = "4712f4558c444aa3ac14a6aaf1a2ab31";
 //
 // const fs = require('fs');
+var mnemonic = "goat stairs tragic anchor link merge cannon similar clay stable body predict";
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+// var HDWalletProvider = require("truffle-hdwallet-provider");
+// var mnemonic = "orange apple banana ... ";
+// module.exports = {
+//  networks: {
+//   development: {
+//    host: "127.0.0.1",
+//    port: 8545,
+//    network_id: "*"
+//   },
+  
+//  }
+// };
 
 module.exports = {
   /**
@@ -47,6 +61,14 @@ module.exports = {
       port: 8545, // Standard Ethereum port (default: none)
       network_id: "*", // Any network (default: none)
     },
+    rinkeby: {
+      provider: function() { 
+       return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/4712f4558c444aa3ac14a6aaf1a2ab31");
+      },
+      network_id: 4,
+      gas: 4500000,
+      gasPrice: 10000000000,
+  }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -59,7 +81,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     // ropsten: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
+    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/d99347914e5648d384ac2a3b1911e4c1`),
     // network_id: 3,       // Ropsten's id
     // gas: 5500000,        // Ropsten has a lower block limit than mainnet
     // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
